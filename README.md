@@ -43,8 +43,46 @@ source .devops/bin/activate
 3. Run in Kubernetes:  `./run_kubernetes.sh`
 
 ### Kubernetes Steps
-
+```bash
 * Setup and Configure Docker locally
+You’ll need to create a [free docker account](https://hub.docker.com/signup), where you’ll choose a unique username and link your email to a docker account. Your username is your unique docker ID.
+
+To install the latest version of docker, choose the Community Edition (CE) for your operating system, on [docker’s installation site](https://docs.docker.com/get-docker/). It is also recommended that you install the latest, stable release:
+
+After installation, you can verify that you’ve successfully installed docker by printing its version in your terminal: docker --version
+```
+
 * Setup and Configure Kubernetes locally
+```bash
+# Use the following wget command to download latest minikube binary
+wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+# Once the binary is downloaded, copy it to the path /usr/local/bin and set the executable permissions on it
+sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+sudo chmod +x /usr/local/bin/minikube
+
+# Verify the minikube version
+minikube version
+
+# Install Kubectl utility
+# Use below curl command to download latest version of kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+
+# Once kubectl is downloaded then set the executable permissions on kubectl binary and move it to the path /usr/local/bin
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+# verify the kubectl version
+kubectl version -o yaml
+```
+
 * Create Flask app in Container
+```bash
+# This command is part of the executable script run_docker.sh in the root of this repository
+sudo docker run -p 8000:80 <project tag>
+```
+
 * Run via kubectl
+```bash
+kubectl run <project tag> --image=$dockerpath
+```
