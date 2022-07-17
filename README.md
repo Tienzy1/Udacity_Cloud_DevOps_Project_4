@@ -43,8 +43,9 @@ source .devops/bin/activate
 3. Run in Kubernetes:  `./run_kubernetes.sh`
 
 ### Kubernetes Steps
-```bash
+
 * Setup and Configure Docker locally
+```bash
 You’ll need to create a [free docker account](https://hub.docker.com/signup), where you’ll choose a unique username and link your email to a docker account. Your username is your unique docker ID.
 
 To install the latest version of docker, choose the Community Edition (CE) for your operating system, on [docker’s installation site](https://docs.docker.com/get-docker/). It is also recommended that you install the latest, stable release:
